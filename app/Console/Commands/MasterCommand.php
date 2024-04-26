@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 
 class MasterCommand extends Command
 {
-//php artisan fetch:all --dateFrom=2024-04-25 --dateTo=2024-04-26 --limit=50
+//php artisan fetch:all --dateFrom=2024-04-01 --dateTo=2024-04-30 --limit=50
     protected $signature = 'fetch:all {--dateFrom= : The starting date} {--dateTo= : The ending date} {--limit=100 : The limit of records to fetch}';
     protected $description = 'Fetch data from all endpoints and store in database';
 
@@ -17,25 +17,25 @@ class MasterCommand extends Command
         $dateTo = $this->option('dateTo') ?? date('Y-m-d', strtotime('+1 day'));
         $limit = $this->option('limit') ?? 100;
 
-        $this->call('orders:fetch', [
+        $this->call('fetch:orders', [
             '--dateFrom' => $dateFrom,
             '--dateTo' => $dateTo,
             '--limit' => $limit,
         ]);
 
-        $this->call('stocks:fetch', [
+        $this->call('fetch:stocks', [
             '--dateFrom' => $dateFrom,
             '--dateTo' => $dateTo,
             '--limit' => $limit,
         ]);
 
-        $this->call('incomes:fetch', [
+        $this->call('fetch:incomes', [
             '--dateFrom' => $dateFrom,
             '--dateTo' => $dateTo,
             '--limit' => $limit,
         ]);
 
-        $this->call('sales:fetch', [
+        $this->call('fetch:sales', [
             '--dateFrom' => $dateFrom,
             '--dateTo' => $dateTo,
             '--limit' => $limit,
