@@ -58,3 +58,4 @@ class FetchOrdersCommand extends Command
     }
 
 }
+//run php artisan fetch:orders --dateFrom=2024-04-01 --dateTo=2024-04-30 --limit=50

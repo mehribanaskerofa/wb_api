@@ -32,7 +32,7 @@ class FetchStocksCommand extends Command
      */
     public function handle(ApiService $apiService)
     {
-        $dateFrom = $this->option('dateFrom') ?? date('Y-m-d');
+        $dateFrom = $this->option('dateFrom') ? ($this->option('dateFrom') < date('Y-m-d') ? date('Y-m-d') : $this->option('dateFrom')) : date('Y-m-d');
         $dateTo = $this->option('dateTo') ?? date('Y-m-d', strtotime('+1 day'));;
         $limit = $this->option('limit') ?? 100;
 
